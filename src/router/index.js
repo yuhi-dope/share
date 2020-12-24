@@ -19,16 +19,25 @@ const routes = [{
 }, {
   path: '/home',
   name: 'Home',
-  component: Home
+  component: Home,
+meta: {
+      requiresAuth: true,
+    },  
   }, {
     path: "/detail/:id",
     name: "detail",
     component: Detail,
+    meta: {
+      requiresAuth: true,
+    },
     props: true,
   },{
     path: "/profile",
     name: "profile",
     component: Profile,
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 
@@ -38,4 +47,19 @@ const router = new VueRouter({
   routes
 });
 
-export default router
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some((recode) => recode.meta.requireAuth) && !store.state.requireAuth
+    ) {
+    next({
+      path: "/",
+      query: {
+        redirect: to.fullPath,
+      },
+    });
+  } else {
+    next();
+  }
+});
+
+export default router;
