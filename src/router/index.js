@@ -49,7 +49,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (
-    to.matched.some((recode) => recode.meta.requireAuth) && !store.state.requireAuth
+    to.matched.some((recode) => recode.meta.requireAuth) && !store.state.auth
     ) {
     next({
       path: "/",

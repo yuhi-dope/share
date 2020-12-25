@@ -25,8 +25,8 @@ export default {
   data(){
     return{
       shares: [],
-      path: ture,
-      profile: ture,
+      path: true,
+      profile: true,
     };
   },
   methods:{
@@ -47,7 +47,7 @@ export default {
               console.log(response);
               this.$router.go({
                 path: this.$router.currentRoute.path,
-                forth: true,
+                force: true,
               });
             });
           }
