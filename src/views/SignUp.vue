@@ -36,7 +36,7 @@ export default {
          name: this.name,
          profile: this.profile,
          email: this.email,
-         password: this.pasword
+         password: this.password
        })
        .then(response =>{
          console.log(response);
